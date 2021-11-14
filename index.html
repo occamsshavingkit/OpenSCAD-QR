@@ -6,9 +6,10 @@
     <script type="text/javascript">
         function UpdateQrCode() {
             var data = document.getElementById("url").value;
+            var correctionlevel = document.getElementById("correction").value;
 
             // Create QR Code
-            var qr = qrcode(0, "L");
+            var qr = qrcode(0, correctionlevel);
             qr.addData(data);
             qr.make();
 
@@ -121,6 +122,13 @@
     <div id="input" class="module">
         <p><label for="url">Enter URL or other value to encode:</label></p>
         <input type="text" name="url" id="url" value="https://www.rider.cz/" oninput="UpdateQrCode()" />
+        <p><label for="correction">Choose error correction level:</label></p>
+        <select id="correction" name="correction" oninput="UpdateQrCode()">
+            <option value="L">Low 7%</option>
+            <option value="M">Medium 15%</option>
+            <option value="Q">Quarter 25%</option>
+            <option value="H">High 30%</option>
+        </select>
     </div>
     <div id="qr" class="module"></div>
     <div id="code" class="module"></div>
